@@ -1,2 +1,1 @@
-import TreeView from './lib/TreeView'
-export default TreeView
+module.exports = require('./lib/TreeView')

@@ -1,10 +1,11 @@
 {
   "name": "react-pretty-treeview",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "React Tree View",
-  "main": "index.js",
+  "main": "./dist/bundle.js",
   "scripts": {
     "test": "jest",
+    "build": "webpack",
     "storybook": "start-storybook -p 3001 -c .storybook"
   },
   "repository": {
@@ -25,12 +26,16 @@
   "dependencies": {
     "jest": "^22.4.3",
     "lodash": "^4.17.10",
+    "path": "^0.12.7",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "styled-components": "^3.2.6"
   },
   "devDependencies": {
-    "@storybook/react": "^3.2.10"
+    "@storybook/react": "^3.2.10",
+    "babel-plugin-styled-components": "^1.5.1",
+    "webpack": "^4.7.0",
+    "webpack-cli": "^2.1.2"
   }
 }
