@@ -1,6 +1,8 @@
 # react-tree-view
 
-![Preview](https://github.com/thisJJ/react-pretty-treeview/blob/master/readme-source/preview.png "Preview")
+![version](https://thisjj.github.io/badge/react-pretty-treeview-version.svg "Version")
+
+![Preview](https://raw.githubusercontent.com/thisJJ/react-pretty-treeview/master/readme-source/preview.png "Preview")
 
 
 ## Install
