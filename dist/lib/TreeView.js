@@ -1,10 +1,11 @@
+"use strict";
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { flattenDeep, get } from 'lodash';
 import { fromJS } from 'immutable';
 
-export default class TreeView extends Component {
+class TreeView extends Component {
 
   constructor(props) {
     super(props);
@@ -341,4 +342,7 @@ const TreeNode = styled.span`
     ${props => props.treeStyle && props.treeStyle}
   }
 `;
-module.exports = exports['default'];
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = TreeView

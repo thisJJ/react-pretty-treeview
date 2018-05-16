@@ -1,2 +1,6 @@
-import TreeView from './source/lib/TreeView'
-export default TreeView
+"use strict";
+import TreeView from './dist'
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = TreeView
