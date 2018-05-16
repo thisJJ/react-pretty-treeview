@@ -1,24 +1,11 @@
 "use strict";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { flattenDeep, get } from 'lodash';
+import { fromJS } from 'immutable';
 
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _styledComponents = require('styled-components');
-
-var _styledComponents2 = _interopRequireDefault(_styledComponents);
-
-var _lodash = require('lodash');
-
-var _immutable = require('immutable');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-class TreeView extends _react.Component {
+class TreeView extends Component {
 
   constructor(props) {
     super(props);
@@ -42,7 +29,7 @@ class TreeView extends _react.Component {
 
       if (nextProps.data !== data) {
         this.setState({
-          itemData: (0, _immutable.fromJS)(nextProps.data)
+          itemData: fromJS(nextProps.data)
         });
       }
     };
@@ -53,7 +40,7 @@ class TreeView extends _react.Component {
         activeName
       } = this.props;
       this.setState({
-        itemData: (0, _immutable.fromJS)(data),
+        itemData: fromJS(data),
         activeName: activeName
       });
     };
@@ -75,7 +62,7 @@ class TreeView extends _react.Component {
       const updateData = this.state.itemData;
       const getData = updateData.toJS();
       const treeSourceKey = getIndex.reduce((pre, cur) => {
-        const resultData = (0, _lodash.get)(getData, pre.currentKey ? `${pre.currentKey}${childName}[${cur}].name` : '' + `[${cur}].name`, '');
+        const resultData = get(getData, pre.currentKey ? `${pre.currentKey}${childName}[${cur}].name` : '' + `[${cur}].name`, '');
         pre.result.push(resultData);
         pre.currentKey = pre.currentKey ? pre.currentKey + `${childName}[${cur}].` : `[${cur}].`;
         return pre;
@@ -93,7 +80,7 @@ class TreeView extends _react.Component {
         childName
       } = this.props;
 
-      const getIndex = (0, _lodash.flattenDeep)(index);
+      const getIndex = flattenDeep(index);
       const data = this.state.itemData.toJS();
       const setData = this.createNewData(data, getIndex, childName);
       const itemData = this.state.itemData;
@@ -111,7 +98,7 @@ class TreeView extends _react.Component {
     this.state = {
       activeName: null,
       clickName: '',
-      itemData: (0, _immutable.fromJS)([])
+      itemData: fromJS([])
     };
   }
 
@@ -133,28 +120,32 @@ class TreeView extends _react.Component {
       labelName
     } = this.props;
 
-    return _react2.default.createElement(TreeBody, null, _react2.default.createElement(TreeNodeComponent, {
-      data: itemData,
-      childsIndex: childsIndex,
-      getTreeIndex: getTreeIndex,
-      activeName: activeName,
-      labelStyle: labelStyle,
-      treeStyle: treeStyle,
-      childName: childName,
-      labelName: labelName
-    }));
+    return React.createElement(
+      TreeBody,
+      null,
+      React.createElement(TreeNodeComponent, {
+        data: itemData,
+        childsIndex: childsIndex,
+        getTreeIndex: getTreeIndex,
+        activeName: activeName,
+        labelStyle: labelStyle,
+        treeStyle: treeStyle,
+        childName: childName,
+        labelName: labelName
+      })
+    );
   }
 }
 
 TreeView.propTypes = {
-  labelStyle: _propTypes2.default.string,
-  treeStyle: _propTypes2.default.string,
-  data: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array]),
-  childsIndex: _propTypes2.default.array,
-  onSelected: _propTypes2.default.func,
-  activeName: _propTypes2.default.string,
-  childName: _propTypes2.default.string,
-  labelName: _propTypes2.default.string
+  labelStyle: PropTypes.string,
+  treeStyle: PropTypes.string,
+  data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  childsIndex: PropTypes.array,
+  onSelected: PropTypes.func,
+  activeName: PropTypes.string,
+  childName: PropTypes.string,
+  labelName: PropTypes.string
 };
 TreeView.defaultProps = {
   labelStyle: '',
@@ -165,7 +156,7 @@ TreeView.defaultProps = {
   childName: 'childs',
   labelName: 'name'
 };
-const TreeBody = _styledComponents2.default.ul`
+const TreeBody = styled.ul`
   width: 320px;
   display: block;
   list-style: none;
@@ -173,7 +164,7 @@ const TreeBody = _styledComponents2.default.ul`
   margin: 0px;
 `;
 
-class TreeNodeComponent extends _react2.default.Component {
+class TreeNodeComponent extends React.Component {
 
   constructor(props) {
     super(props);
@@ -200,42 +191,51 @@ class TreeNodeComponent extends _react2.default.Component {
     if (!getData) return null;
     return getData.map((data, key) => {
 
-      return _react2.default.createElement(TreeNode, {
-        key: key,
-        treeStyle: treeStyle
-      }, _react2.default.createElement(TreeNodeCondition, {
-        data: data,
-        childsIndex: this.state.childsIndex,
-        getTreeIndex: this.props.getTreeIndex,
-        keyNode: key,
-        activeName: activeName,
-        labelStyle: labelStyle,
-        labelName: labelName
-      }), data.get(`${childName}`) && _react2.default.createElement(TreeChilds, { open: data.get('open', true) }, _react2.default.createElement(TreeNodeComponent, {
-        data: data.get(`${childName}`),
-        getTreeIndex: this.props.getTreeIndex,
-        childsIndex: this.state.childsIndex === [] ? [key] : [this.state.childsIndex, key],
-        activeName: activeName,
-        labelStyle: labelStyle,
-        treeStyle: treeStyle,
-        childName: childName,
-        labelName: labelName
-      })));
+      return React.createElement(
+        TreeNode,
+        {
+          key: key,
+          treeStyle: treeStyle
+        },
+        React.createElement(TreeNodeCondition, {
+          data: data,
+          childsIndex: this.state.childsIndex,
+          getTreeIndex: this.props.getTreeIndex,
+          keyNode: key,
+          activeName: activeName,
+          labelStyle: labelStyle,
+          labelName: labelName
+        }),
+        data.get(`${childName}`) && React.createElement(
+          TreeChilds,
+          { open: data.get('open', true) },
+          React.createElement(TreeNodeComponent, {
+            data: data.get(`${childName}`),
+            getTreeIndex: this.props.getTreeIndex,
+            childsIndex: this.state.childsIndex === [] ? [key] : [this.state.childsIndex, key],
+            activeName: activeName,
+            labelStyle: labelStyle,
+            treeStyle: treeStyle,
+            childName: childName,
+            labelName: labelName
+          })
+        )
+      );
     });
   }
 }
 
 TreeNodeComponent.propTypes = {
-  childsIndex: _propTypes2.default.array,
-  data: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array]),
-  getTreeIndex: _propTypes2.default.func,
-  activeName: _propTypes2.default.string,
-  labelStyle: _propTypes2.default.string,
-  treeStyle: _propTypes2.default.string,
-  childName: _propTypes2.default.string,
-  labelName: _propTypes2.default.string
+  childsIndex: PropTypes.array,
+  data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  getTreeIndex: PropTypes.func,
+  activeName: PropTypes.string,
+  labelStyle: PropTypes.string,
+  treeStyle: PropTypes.string,
+  childName: PropTypes.string,
+  labelName: PropTypes.string
 };
-class TreeNodeCondition extends _react2.default.Component {
+class TreeNodeCondition extends React.Component {
 
   constructor(props) {
     super(props);
@@ -248,7 +248,7 @@ class TreeNodeCondition extends _react2.default.Component {
         childsIndex
       } = this.props;
       if (this.state.checkUpdate === false) {
-        if ((0, _lodash.get)(nextProps, 'activeName', '') === data.get(`${labelName}`)) {
+        if (get(nextProps, 'activeName', '') === data.get(`${labelName}`)) {
           this.handleChangeUpdate(true);
           this.props.getTreeIndex(childsIndex === [] ? [keyNode] : [childsIndex, keyNode]);
         }
@@ -277,27 +277,31 @@ class TreeNodeCondition extends _react2.default.Component {
       childsIndex
     } = this.props;
 
-    return _react2.default.createElement(TreeLabel, {
-      onClick: () => this.props.getTreeIndex(childsIndex === [] ? [keyNode] : [childsIndex, keyNode]),
-      active: activeName === data.get(`${labelName}`),
-      labelStyle: labelStyle
-    }, data.get(`${labelName}`));
+    return React.createElement(
+      TreeLabel,
+      {
+        onClick: () => this.props.getTreeIndex(childsIndex === [] ? [keyNode] : [childsIndex, keyNode]),
+        active: activeName === data.get(`${labelName}`),
+        labelStyle: labelStyle
+      },
+      data.get(`${labelName}`)
+    );
   }
 
 }
 
 TreeNodeCondition.propTypes = {
-  childsIndex: _propTypes2.default.array,
-  data: _propTypes2.default.object,
-  getTreeIndex: _propTypes2.default.func,
-  activeName: _propTypes2.default.string,
-  labelStyle: _propTypes2.default.string,
-  treeStyle: _propTypes2.default.string,
-  childName: _propTypes2.default.string,
-  labelName: _propTypes2.default.string,
-  keyNode: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+  childsIndex: PropTypes.array,
+  data: PropTypes.object,
+  getTreeIndex: PropTypes.func,
+  activeName: PropTypes.string,
+  labelStyle: PropTypes.string,
+  treeStyle: PropTypes.string,
+  childName: PropTypes.string,
+  labelName: PropTypes.string,
+  keyNode: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
-const TreeLabel = _styledComponents2.default.div`
+const TreeLabel = styled.div`
   cursor: pointer;
   padding: 5px 15px;
   display: inline-block;
@@ -320,13 +324,13 @@ const TreeLabel = _styledComponents2.default.div`
 
 `;
 
-const TreeChilds = _styledComponents2.default.div`
+const TreeChilds = styled.div`
   ${props => props.open === false && `
     display: none;
   `}
 `;
 
-const TreeNode = _styledComponents2.default.span`
+const TreeNode = styled.span`
   position: relative;
   list-style: none;
   display: block;
@@ -341,4 +345,4 @@ const TreeNode = _styledComponents2.default.span`
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = TreeView;
+exports.default = TreeView
