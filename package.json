@@ -34,6 +34,16 @@
   },
   "devDependencies": {
     "@storybook/react": "^3.2.10",
-    "babel-plugin-styled-components": "^1.5.1"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-istanbul": "^4.1.6",
+    "babel-plugin-styled-components": "^1.5.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "rimraf": "^2.6.2",
+    "webpack": "^4.8.3"
   }
 }
