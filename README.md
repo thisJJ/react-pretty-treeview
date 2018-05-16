@@ -1,6 +1,8 @@
 # react-tree-view
 
-![Preview](https://github.com/thisJJ/react-pretty-treeview/blob/master/readme-source/preview.png "Preview")
+![version](https://thisjj.github.io/badge/react-pretty-treeview-version.svg "Version")
+
+![Preview](https://raw.githubusercontent.com/thisJJ/react-pretty-treeview/master/readme-source/preview.png "Preview")
 
 
 ## Install
@@ -16,13 +18,15 @@ npm i --save react-pretty-treeview
 
 ## Props
 
-| Props        | Type         | Required  | Description  |
-| ------------- |:-------------:| -----:| -----:|
-| labelStyle      | String | none | - |
-| treeStyle      | String | none | - |
-| activeName      | String | none | - |
-| data      | Array or Object if use immutable ( fromJS ) | yes | - |
-| onSelected      | Function , Response (childObject, rootIndex, selectedName, dataList, rootKeyName, rootKey) => console.log(childObject, rootIndex, selectedName, dataList, rootKeyName, rootKey) | yes | - |
+| Props        | Type         | Required  | default  | Description  |
+| ------------- |:-------------:| -----:| -----:| -----:|
+| childName      | String | none | childs | - |
+| labelName      | String | none | name | - |
+| labelStyle      | String | none | - | - |
+| treeStyle      | String | none | - | - |
+| activeName      | String | none | - | - |
+| data      | Array or Object if use immutable ( fromJS ) | yes | - | - |
+| onSelected      | Function , Response (childObject, rootIndex, selectedName, dataList, rootKeyName, rootKey) => console.log(childObject, rootIndex, selectedName, dataList, rootKeyName, rootKey) | yes | - | - |
 
 ## Import for using
 ```
