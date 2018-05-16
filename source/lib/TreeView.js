@@ -193,7 +193,7 @@ class TreeNodeComponent extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     let newState = this.state
     if(this.props.childsIndex !== [])
       newState.childsIndex.push(this.props.childsIndex)

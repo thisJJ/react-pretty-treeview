@@ -183,15 +183,16 @@ class TreeNodeComponent extends _react2.default.Component {
 
   constructor(props) {
     super(props);
+
+    this.componentDidMount = () => {
+      let newState = this.state;
+      if (this.props.childsIndex !== []) newState.childsIndex.push(this.props.childsIndex);
+      this.setState(newState);
+    };
+
     this.state = {
       childsIndex: []
     };
-  }
-
-  componentDidMount() {
-    let newState = this.state;
-    if (this.props.childsIndex !== []) newState.childsIndex.push(this.props.childsIndex);
-    this.setState(newState);
   }
 
   render() {
