@@ -277,16 +277,16 @@ class TreeNodeCondition extends React.Component {
     } = this.props
     if(this.state.checkUpdate === false){
       if(get(nextProps, 'activeName', '') === data.get(`${labelName}`)){
+        this.handleChangeUpdate(true)
         this.props.getTreeIndex(childsIndex === [] ? [keyNode] : [childsIndex, keyNode])
-        this.setState({
-          checkUpdate: true
-        })
-      } else {
-        this.setState({
-          checkUpdate: false
-        })
       }
     }
+  }
+
+  handleChangeUpdate = (status) => {
+    this.setState({
+      checkUpdate: status
+    })
   }
 
   render(){

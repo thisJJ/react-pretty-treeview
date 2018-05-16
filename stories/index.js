@@ -8,6 +8,7 @@ storiesOf('TreeView', module)
       <TreeView
         labelStyle=''
         treeStyle=''
+        activeName='revlon-lipstick'
         data={[
           {
             name: 'revlon test',
