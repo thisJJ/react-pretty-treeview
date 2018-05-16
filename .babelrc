@@ -3,5 +3,5 @@
     "stage-1",
     "react"
   ],
-  "plugins": ["transform-es2015-modules-commonjs", "add-module-exports"]
+  "plugins": ["transform-es2015-modules-commonjs", "add-module-exports", ["styled-components", { "ssr": true, "displayName": true, "preprocess": false } ]]
 }

@@ -1,13 +1,13 @@
-"use strict";
- 
-var _dist = require("./dist");
- 
-var _dist2 = _interopRequireDefault(_dist);
- 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
- 
+'use strict';
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = _dist2.default;
- 
+
+var _TreeView = require('./dist');
+
+var _TreeView2 = _interopRequireDefault(_TreeView);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _TreeView2.default;
