@@ -146,21 +146,29 @@ export default class TreeView extends Component {
     } = this.props
 
     return(
-      <TreeBody>
-        <TreeNodeComponent
-          data={ itemData }
-          childsIndex={ childsIndex }
-          getTreeIndex={ getTreeIndex }
-          activeName={ activeName }
-          labelStyle={ labelStyle }
-          treeStyle={ treeStyle }
-          childName={ childName }
-          labelName={ labelName }
-        />
-      </TreeBody>
+      <TreeComponent>
+        <TreeBody>
+          <TreeNodeComponent
+            data={ itemData }
+            childsIndex={ childsIndex }
+            getTreeIndex={ getTreeIndex }
+            activeName={ activeName }
+            labelStyle={ labelStyle }
+            treeStyle={ treeStyle }
+            childName={ childName }
+            labelName={ labelName }
+          />
+        </TreeBody>
+      </TreeComponent>
     )
   }
 }
+
+const TreeComponent = styled.div`
+  position: relative;
+  display: block;
+  clear:  both;
+`
 
 const TreeBody = styled.ul`
   width: 320px;
@@ -318,18 +326,34 @@ const TreeLabel = styled.div`
   padding: 5px 15px;
   display: inline-block;
   position: relative;
-  background-color: #f9fcff;
-	border: solid 1px #d0e7ff;
-  margin-bottom: 10px;
-  border-radius: 4px;
+  background-color: #eee;
   :hover{
     background: rgba(0,0,0,0.05);
   }
+  &:before{
+    content: '';
+    width: 1px;
+    height: 82%;
+    position: absolute;
+    left: -15px;
+    top: -10px;
+    background-color: #ddd;
+  }
+
+  &:after{
+    content: '';
+    width: 15px;
+    height: 1px;
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    background-color: #ddd;
+  }
   ${ props => props.active === true && `
-    background-color: #0b56a4;
-    color: #fff;
+    background-color: #ddd;
+    color: #333;
     :hover{
-      background: #043669;
+      background: #eee;
     }
   `}
   ${ props => props.labelStyle && props.labelStyle }
@@ -346,7 +370,31 @@ const TreeNode = styled.span`
   position: relative;
   list-style: none;
   display: block;
+  padding-top: 10px;
+  &:first-child{
+    &:before{
+      content: '';
+      width: 1px;
+      height: 100%;
+      position: absolute;
+      left: -15px;
+      top: 0px;
+      background-color: #ddd;
+    }
+  }
+  &:last-child{
+    &:before{
+      content: '';
+      width: 1px;
+      height: 0%;
+      position: absolute;
+      left: -15px;
+      top: 0px;
+      background-color: #ddd;
+    }
+  }
   span{
+    padding-top: 10px;
     margin-left: 30px;
     position: relative;
     list-style: none;

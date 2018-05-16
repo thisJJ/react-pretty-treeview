@@ -138,18 +138,22 @@ class TreeView extends _react.Component {
     } = this.props;
 
     return _react2.default.createElement(
-      TreeBody,
+      TreeComponent,
       null,
-      _react2.default.createElement(TreeNodeComponent, {
-        data: itemData,
-        childsIndex: childsIndex,
-        getTreeIndex: getTreeIndex,
-        activeName: activeName,
-        labelStyle: labelStyle,
-        treeStyle: treeStyle,
-        childName: childName,
-        labelName: labelName
-      })
+      _react2.default.createElement(
+        TreeBody,
+        null,
+        _react2.default.createElement(TreeNodeComponent, {
+          data: itemData,
+          childsIndex: childsIndex,
+          getTreeIndex: getTreeIndex,
+          activeName: activeName,
+          labelStyle: labelStyle,
+          treeStyle: treeStyle,
+          childName: childName,
+          labelName: labelName
+        })
+      )
     );
   }
 }
@@ -174,9 +178,14 @@ TreeView.defaultProps = {
   childName: 'childs',
   labelName: 'name'
 };
+const TreeComponent = _styledComponents2.default.div.withConfig({
+  displayName: 'TreeView__TreeComponent',
+  componentId: 's1dwt6i2-0'
+})(['position:relative;display:block;clear:both;']);
+
 const TreeBody = _styledComponents2.default.ul.withConfig({
   displayName: 'TreeView__TreeBody',
-  componentId: 's1dwt6i2-0'
+  componentId: 's1dwt6i2-1'
 })(['width:320px;display:block;list-style:none;padding:0px;margin:0px;']);
 
 class TreeNodeComponent extends _react2.default.Component {
@@ -319,23 +328,23 @@ TreeNodeCondition.propTypes = {
 };
 const TreeLabel = _styledComponents2.default.div.withConfig({
   displayName: 'TreeView__TreeLabel',
-  componentId: 's1dwt6i2-1'
-})(['cursor:pointer;padding:5px 15px;display:inline-block;position:relative;background-color:#f9fcff;border:solid 1px #d0e7ff;margin-bottom:10px;border-radius:4px;:hover{background:rgba(0,0,0,0.05);}', ' ', ''], props => props.active === true && `
-    background-color: #0b56a4;
-    color: #fff;
+  componentId: 's1dwt6i2-2'
+})(['cursor:pointer;padding:5px 15px;display:inline-block;position:relative;background-color:#eee;:hover{background:rgba(0,0,0,0.05);}&:before{content:\'\';width:1px;height:82%;position:absolute;left:-15px;top:-10px;background-color:#ddd;}&:after{content:\'\';width:15px;height:1px;position:absolute;left:-15px;top:50%;background-color:#ddd;}', ' ', ''], props => props.active === true && `
+    background-color: #ddd;
+    color: #333;
     :hover{
-      background: #043669;
+      background: #eee;
     }
   `, props => props.labelStyle && props.labelStyle);
 
 const TreeChilds = _styledComponents2.default.div.withConfig({
   displayName: 'TreeView__TreeChilds',
-  componentId: 's1dwt6i2-2'
+  componentId: 's1dwt6i2-3'
 })(['', ''], props => props.open === false && `
     display: none;
   `);
 
 const TreeNode = _styledComponents2.default.span.withConfig({
   displayName: 'TreeView__TreeNode',
-  componentId: 's1dwt6i2-3'
-})(['position:relative;list-style:none;display:block;span{margin-left:30px;position:relative;list-style:none;display:block;', '}'], props => props.treeStyle && props.treeStyle);
+  componentId: 's1dwt6i2-4'
+})(['position:relative;list-style:none;display:block;padding-top:10px;&:first-child{&:before{content:\'\';width:1px;height:100%;position:absolute;left:-15px;top:0px;background-color:#ddd;}}&:last-child{&:before{content:\'\';width:1px;height:0%;position:absolute;left:-15px;top:0px;background-color:#ddd;}}span{padding-top:10px;margin-left:30px;position:relative;list-style:none;display:block;', '}'], props => props.treeStyle && props.treeStyle);
