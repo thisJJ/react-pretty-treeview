@@ -18,13 +18,15 @@ npm i --save react-pretty-treeview
 
 ## Props
 
-| Props        | Type         | Required  | Description  |
+| Props        | Type         | Required  | default  | Description  |
 | ------------- |:-------------:| -----:| -----:|
-| labelStyle      | String | none | - |
-| treeStyle      | String | none | - |
-| activeName      | String | none | - |
-| data      | Array or Object if use immutable ( fromJS ) | yes | - |
-| onSelected      | Function , Response (childObject, rootIndex, selectedName, dataList, rootKeyName, rootKey) => console.log(childObject, rootIndex, selectedName, dataList, rootKeyName, rootKey) | yes | - |
+| childName      | String | none | childs | - |
+| labelName      | String | none | name | - |
+| labelStyle      | String | none | - | - |
+| treeStyle      | String | none | - | - |
+| activeName      | String | none | - | - |
+| data      | Array or Object if use immutable ( fromJS ) | yes | - | - |
+| onSelected      | Function , Response (childObject, rootIndex, selectedName, dataList, rootKeyName, rootKey) => console.log(childObject, rootIndex, selectedName, dataList, rootKeyName, rootKey) | yes | - | - |
 
 ## Import for using
 ```
