@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import TreeView from '../dist'
+import TreeView from '../build'
 storiesOf('TreeView', module)
   .add('TreeView', () => {
     return (

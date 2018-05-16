@@ -1,12 +1,12 @@
 "use strict";
 
-var _dist = require("./build");
+var _TreeView = require("./lib/TreeView.js");
 
-var _dist2 = _interopRequireDefault(_dist);
+var _TreeView2 = _interopRequireDefault(_TreeView);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = _dist2.default;
+exports.default = _TreeView2.default;

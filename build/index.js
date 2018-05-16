@@ -1,6 +1,6 @@
 "use strict";
 
-var _dist = require("./build");
+var _dist = require("./dist");
 
 var _dist2 = _interopRequireDefault(_dist);
 
