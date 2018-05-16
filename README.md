@@ -19,7 +19,7 @@ npm i --save react-pretty-treeview
 ## Props
 
 | Props        | Type         | Required  | default  | Description  |
-| ------------- |:-------------:| -----:| -----:|
+| ------------- |:-------------:| -----:| -----:| -----:|
 | childName      | String | none | childs | - |
 | labelName      | String | none | name | - |
 | labelStyle      | String | none | - | - |
