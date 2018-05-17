@@ -164,14 +164,17 @@ export default class TreeView extends Component {
   }
 }
 
-const TreeComponent = styled.div`
+const TreeComponent = styled.div.attrs({
+  className: "tree-view-component"
+})`
   position: relative;
   display: block;
   clear:  both;
 `
 
-const TreeBody = styled.ul`
-  width: 320px;
+const TreeBody = styled.ul.attrs({
+  className: "tree-view-body"
+})`
   display: block;
   list-style: none;
   padding: 0px;
@@ -321,7 +324,9 @@ class TreeNodeCondition extends React.Component {
 
 }
 
-const TreeLabel = styled.div`
+const TreeLabel = styled.div.attrs({
+  className: "tree-view-label"
+})`
   cursor: pointer;
   padding: 5px 15px;
   display: inline-block;
@@ -360,13 +365,17 @@ const TreeLabel = styled.div`
 
 `
 
-const TreeChilds = styled.div`
+const TreeChilds = styled.div.attrs({
+  className: "tree-view-childs"
+})`
   ${props => props.open === false && `
     display: none;
   `}
 `
 
-const TreeNode = styled.span`
+const TreeNode = styled.span.attrs({
+  className: "tree-view-node"
+})`
   position: relative;
   list-style: none;
   display: block;
