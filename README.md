@@ -30,7 +30,12 @@ npm i --save react-pretty-treeview
 | onSelected      | Function , Response (childObject, rootIndex, selectedName, dataList, rootKeyName, rootKey) => console.log(childObject, rootIndex, selectedName, dataList, rootKeyName, rootKey) | yes | - | - |
 
 ## Import for using
+
+```javascript
+import TreeView from 'react-pretty-treeview';
 ```
+
+```javascript
  <TreeView
   labelStyle=''
   treeStyle=''
