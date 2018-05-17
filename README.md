@@ -15,6 +15,7 @@ npm i --save react-pretty-treeview
 | Update        | version         | date  |
 | ------------- |:-------------:| -----:|
 | Can customize style in component      | 1.0.18 | 16 May 2018 |
+| Can use element class for customize style    | 1.0.21 | 17 May 2018 |
 
 ## Props
 

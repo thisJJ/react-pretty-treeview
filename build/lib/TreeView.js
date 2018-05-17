@@ -178,14 +178,17 @@ TreeView.defaultProps = {
   childName: 'childs',
   labelName: 'name'
 };
-const TreeComponent = _styledComponents2.default.div`
+const TreeComponent = _styledComponents2.default.div.attrs({
+  className: "tree-view-component"
+})`
   position: relative;
   display: block;
   clear:  both;
 `;
 
-const TreeBody = _styledComponents2.default.ul`
-  width: 320px;
+const TreeBody = _styledComponents2.default.ul.attrs({
+  className: "tree-view-body"
+})`
   display: block;
   list-style: none;
   padding: 0px;
@@ -330,7 +333,9 @@ TreeNodeCondition.propTypes = {
   labelName: _propTypes2.default.string,
   keyNode: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
 };
-const TreeLabel = _styledComponents2.default.div`
+const TreeLabel = _styledComponents2.default.div.attrs({
+  className: "tree-view-label"
+})`
   cursor: pointer;
   padding: 5px 15px;
   display: inline-block;
@@ -369,13 +374,17 @@ const TreeLabel = _styledComponents2.default.div`
 
 `;
 
-const TreeChilds = _styledComponents2.default.div`
+const TreeChilds = _styledComponents2.default.div.attrs({
+  className: "tree-view-childs"
+})`
   ${props => props.open === false && `
     display: none;
   `}
 `;
 
-const TreeNode = _styledComponents2.default.span`
+const TreeNode = _styledComponents2.default.span.attrs({
+  className: "tree-view-node"
+})`
   position: relative;
   list-style: none;
   display: block;
