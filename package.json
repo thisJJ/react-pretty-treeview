@@ -1,6 +1,6 @@
 {
   "name": "react-pretty-treeview",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "React Tree View",
   "main": "./index.js",
   "scripts": {
@@ -17,7 +17,10 @@
   "keywords": [
     "react",
     "tree",
-    "view"
+    "view",
+    "treeview",
+    "react-tree-view",
+    "react-treeview"
   ],
   "author": "Thinnakrit",
   "license": "ISC",
@@ -27,12 +30,10 @@
   "homepage": "https://github.com/thisJJ/react-pretty-treeview#readme",
   "dependencies": {
     "@storybook/react": "^3.2.10",
-    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-istanbul": "^4.1.6",
-    "babel-plugin-styled-components": "^1.5.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
@@ -62,6 +63,10 @@
     "webpack": "^4.0.0-alpha.0"
   },
   "devDependencies": {
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
+    "babel-cli": "^6.26.0",
+    "babel-plugin-styled-components": "^1.5.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2016": "^6.24.1"
   }
 }

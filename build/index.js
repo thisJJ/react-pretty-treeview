@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _TreeView = require('./dist');
+var _TreeView = require('./lib/TreeView');
 
 var _TreeView2 = _interopRequireDefault(_TreeView);
 
