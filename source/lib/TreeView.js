@@ -146,8 +146,94 @@ export default class TreeView extends Component {
     } = this.props
 
     return(
-      <TreeComponent>
-        <TreeBody>
+      <div className="tree-view-component">
+        <style jsx>
+        {
+          `
+          .tree-view-component{
+            position: relative;
+            display: block;
+            clear:  both;
+          }
+          ul.tree-view-body{
+            display: block;
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+          }
+
+          span.tree-view-node{
+            position: relative;
+            list-style: none;
+            display: block;
+            padding-top: 10px;
+          }
+          span.tree-view-node:first-child:before{
+            content: '';
+            width: 1px;
+            height: 100%;
+            position: absolute;
+            left: -15px;
+            top: 0px;
+            background-color: #ddd;
+          }
+          span.tree-view-node:last-child:before{
+            content: '';
+            width: 1px;
+            height: 0%;
+            position: absolute;
+            left: -15px;
+            top: 0px;
+            background-color: #ddd;
+          }
+          span.tree-view-node span{
+            padding-top: 10px;
+            margin-left: 30px;
+            position: relative;
+            list-style: none;
+            display: block;
+          }
+
+          .tree-view-label{
+            cursor: pointer;
+            padding: 5px 15px;
+            display: inline-block;
+            position: relative;
+            background-color: #eee;
+          }
+          .tree-view-label:hover{
+            background: rgba(0,0,0,0.05);
+          }
+          .tree-view-label:before{
+            content: '';
+            width: 1px;
+            height: 82%;
+            position: absolute;
+            left: -15px;
+            top: -10px;
+            background-color: #ddd;
+          }
+
+          .tree-view-label:after{
+            content: '';
+            width: 15px;
+            height: 1px;
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            background-color: #ddd;
+          }
+          .tree-view-label.active{
+            background-color: #ddd;
+            color: #333;
+          }
+          .tree-view-label.active:hover{
+            background: #eee;
+          }
+          `
+        }
+        </style>
+        <ul className="tree-view-body">
           <TreeNodeComponent
             data={ itemData }
             childsIndex={ childsIndex }
@@ -158,28 +244,11 @@ export default class TreeView extends Component {
             childName={ childName }
             labelName={ labelName }
           />
-        </TreeBody>
-      </TreeComponent>
+        </ul>
+      </div>
     )
   }
 }
-
-const TreeComponent = styled.div.attrs({
-  className: "tree-view-component"
-})`
-  position: relative;
-  display: block;
-  clear:  both;
-`
-
-const TreeBody = styled.ul.attrs({
-  className: "tree-view-body"
-})`
-  display: block;
-  list-style: none;
-  padding: 0px;
-  margin: 0px;
-`
 
 class TreeNodeComponent extends React.Component {
 
@@ -224,9 +293,8 @@ class TreeNodeComponent extends React.Component {
     return getData.map((data, key) => {
 
       return (
-        <TreeNode
+        <span className="tree-view-node"
           key={ key }
-          treeStyle={ treeStyle }
         >
           <TreeNodeCondition
             data={ data }
@@ -237,7 +305,7 @@ class TreeNodeComponent extends React.Component {
             labelStyle={ labelStyle }
             labelName={ labelName }
           />
-          {data.get(`${childName}`) && <TreeChilds open={ data.get('open', true) }>
+          {data.get(`${childName}`) && <div>
             <TreeNodeComponent
               data={ data.get(`${childName}`) }
               getTreeIndex={ this.props.getTreeIndex }
@@ -248,8 +316,8 @@ class TreeNodeComponent extends React.Component {
               childName={ childName }
               labelName={ labelName }
             />
-          </TreeChilds>}
-        </TreeNode>
+          </div>}
+        </span>
       )
     })
   }
@@ -312,102 +380,12 @@ class TreeNodeCondition extends React.Component {
     } = this.props
 
     return (
-      <TreeLabel
+      <div className={`tree-view-label ${activeName === data.get(`${labelName}`) && 'active'}`}
         onClick={ ()=> this.props.getTreeIndex(childsIndex === [] ? [keyNode] : [childsIndex, keyNode]) }
-        active={ activeName === data.get(`${labelName}`) }
-        labelStyle={ labelStyle }
       >
         { data.get(`${labelName}`) }
-      </TreeLabel>
+      </div>
     )
   }
 
 }
-
-const TreeLabel = styled.div.attrs({
-  className: "tree-view-label"
-})`
-  cursor: pointer;
-  padding: 5px 15px;
-  display: inline-block;
-  position: relative;
-  background-color: #eee;
-  :hover{
-    background: rgba(0,0,0,0.05);
-  }
-  &:before{
-    content: '';
-    width: 1px;
-    height: 82%;
-    position: absolute;
-    left: -15px;
-    top: -10px;
-    background-color: #ddd;
-  }
-
-  &:after{
-    content: '';
-    width: 15px;
-    height: 1px;
-    position: absolute;
-    left: -15px;
-    top: 50%;
-    background-color: #ddd;
-  }
-  ${ props => props.active === true && `
-    background-color: #ddd;
-    color: #333;
-    :hover{
-      background: #eee;
-    }
-  `}
-  ${ props => props.labelStyle && props.labelStyle }
-
-`
-
-const TreeChilds = styled.div.attrs({
-  className: "tree-view-childs"
-})`
-  ${props => props.open === false && `
-    display: none;
-  `}
-`
-
-const TreeNode = styled.span.attrs({
-  className: "tree-view-node"
-})`
-  position: relative;
-  list-style: none;
-  display: block;
-  padding-top: 10px;
-  &:first-child{
-    &:before{
-      content: '';
-      width: 1px;
-      height: 100%;
-      position: absolute;
-      left: -15px;
-      top: 0px;
-      background-color: #ddd;
-    }
-  }
-  &:last-child{
-    &:before{
-      content: '';
-      width: 1px;
-      height: 0%;
-      position: absolute;
-      left: -15px;
-      top: 0px;
-      background-color: #ddd;
-    }
-  }
-  span{
-    padding-top: 10px;
-    margin-left: 30px;
-    position: relative;
-    list-style: none;
-    display: block;
-    ${ props => props.treeStyle && props.treeStyle }
-  }
-`

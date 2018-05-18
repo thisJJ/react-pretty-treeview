@@ -6,6 +6,13 @@
   ],
   "plugins": [
     "transform-es2015-modules-commonjs",
-    "add-module-exports"
+    "add-module-exports",
+    ["babel-plugin-styled-components", {
+      "ssr": true,
+      "displayName": false,
+      "preprocess": true,
+      "minify": true,
+      "transpileTemplateLiterals": false
+    }]
   ]
 }
