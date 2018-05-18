@@ -168,68 +168,71 @@ export default class TreeView extends Component {
             display: block;
             padding-top: 10px;
           }
-          span.tree-view-node:first-child:before{
-            content: '';
-            width: 1px;
-            height: 100%;
-            position: absolute;
-            left: -15px;
-            top: 0px;
-            background-color: #ddd;
-          }
-          span.tree-view-node:last-child:before{
-            content: '';
-            width: 1px;
-            height: 0%;
-            position: absolute;
-            left: -15px;
-            top: 0px;
-            background-color: #ddd;
-          }
-          span.tree-view-node span{
-            padding-top: 10px;
-            margin-left: 30px;
-            position: relative;
-            list-style: none;
-            display: block;
-          }
+          ${ treeStyle === '' ? `
+            span.tree-view-node:first-child:before{
+              content: '';
+              width: 1px;
+              height: 100%;
+              position: absolute;
+              left: -15px;
+              top: 0px;
+              background-color: #ddd;
+            }
+            span.tree-view-node:last-child:before{
+              content: '';
+              width: 1px;
+              height: 0%;
+              position: absolute;
+              left: -15px;
+              top: 0px;
+              background-color: #ddd;
+            }
+            span.tree-view-node span{
+              padding-top: 10px;
+              margin-left: 30px;
+              position: relative;
+              list-style: none;
+              display: block;
+            }
+          ` : treeStyle }
+          ${labelStyle === '' ? `
+            .tree-view-label{
+              cursor: pointer;
+              padding: 5px 15px;
+              display: inline-block;
+              position: relative;
+              background-color: #eee;
+            }
+            .tree-view-label:hover{
+              background: rgba(0,0,0,0.05);
+            }
+            .tree-view-label:before{
+              content: '';
+              width: 1px;
+              height: 82%;
+              position: absolute;
+              left: -15px;
+              top: -10px;
+              background-color: #ddd;
+            }
 
-          .tree-view-label{
-            cursor: pointer;
-            padding: 5px 15px;
-            display: inline-block;
-            position: relative;
-            background-color: #eee;
-          }
-          .tree-view-label:hover{
-            background: rgba(0,0,0,0.05);
-          }
-          .tree-view-label:before{
-            content: '';
-            width: 1px;
-            height: 82%;
-            position: absolute;
-            left: -15px;
-            top: -10px;
-            background-color: #ddd;
-          }
-
-          .tree-view-label:after{
-            content: '';
-            width: 15px;
-            height: 1px;
-            position: absolute;
-            left: -15px;
-            top: 50%;
-            background-color: #ddd;
-          }
-          .tree-view-label.active{
-            background-color: #ddd;
-            color: #333;
-          }
-          .tree-view-label.active:hover{
-            background: #eee;
-          }
+            .tree-view-label:after{
+              content: '';
+              width: 15px;
+              height: 1px;
+              position: absolute;
+              left: -15px;
+              top: 50%;
+              background-color: #ddd;
+            }
+            .tree-view-label.active{
+              background-color: #ddd;
+              color: #333;
+            }
+            .tree-view-label.active:hover{
+              background: #eee;
+            }
+            ` : labelStyle }
           `
         }
         </style>
@@ -239,8 +242,6 @@ export default class TreeView extends Component {
             childsIndex={ childsIndex }
             getTreeIndex={ getTreeIndex }
             activeName={ activeName }
-            labelStyle={ labelStyle }
-            treeStyle={ treeStyle }
             childName={ childName }
             labelName={ labelName }
           />
@@ -260,8 +261,6 @@ class TreeNodeComponent extends React.Component {
     ]),
     getTreeIndex: PropTypes.func,
     activeName: PropTypes.string,
-    labelStyle: PropTypes.string,
-    treeStyle: PropTypes.string,
     childName: PropTypes.string,
     labelName: PropTypes.string,
   }
@@ -284,8 +283,6 @@ class TreeNodeComponent extends React.Component {
     const getData = this.props.data
     const {
       activeName,
-      labelStyle,
-      treeStyle,
       childName,
       labelName,
     } = this.props
@@ -302,7 +299,6 @@ class TreeNodeComponent extends React.Component {
             getTreeIndex={ this.props.getTreeIndex }
             keyNode={ key }
             activeName={ activeName }
-            labelStyle={ labelStyle }
             labelName={ labelName }
           />
           {data.get(`${childName}`) && <div>
@@ -311,8 +307,6 @@ class TreeNodeComponent extends React.Component {
               getTreeIndex={ this.props.getTreeIndex }
               childsIndex={ this.state.childsIndex === [] ? [key] : [this.state.childsIndex, key] }
               activeName={ activeName }
-              labelStyle={ labelStyle }
-              treeStyle={ treeStyle }
               childName={ childName }
               labelName={ labelName }
             />
@@ -330,8 +324,6 @@ class TreeNodeCondition extends React.Component {
     data: PropTypes.object,
     getTreeIndex: PropTypes.func,
     activeName: PropTypes.string,
-    labelStyle: PropTypes.string,
-    treeStyle: PropTypes.string,
     childName: PropTypes.string,
     labelName: PropTypes.string,
     keyNode: PropTypes.oneOfType([
@@ -375,7 +367,6 @@ class TreeNodeCondition extends React.Component {
       data,
       labelName,
       keyNode,
-      labelStyle,
       childsIndex,
     } = this.props
 
