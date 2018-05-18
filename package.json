@@ -1,10 +1,10 @@
 {
   "name": "react-pretty-treeview",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "React Tree View",
   "main": "./index.js",
   "scripts": {
-    "build": "babel source -d dist",
+    "build": "babel source -d build",
     "test": "jest",
     "storybook": "start-storybook -p 3001 -c .storybook",
     "tdd": "cross-env NODE_ENV=test karma start",
