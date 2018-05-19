@@ -1,6 +1,6 @@
 {
   "name": "react-pretty-treeview",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "React Tree View",
   "main": "./index.js",
   "scripts": {
