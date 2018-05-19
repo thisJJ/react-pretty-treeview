@@ -1,5 +1,4 @@
 source
 stories
 .storybook
-node_modules
 readme-source
