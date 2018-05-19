@@ -20,6 +20,14 @@ var _lodash = require('lodash');
 
 var _immutable = require('immutable');
 
+var _TreeNodeCondition = require('./TreeNodeCondition');
+
+var _TreeNodeCondition2 = _interopRequireDefault(_TreeNodeCondition);
+
+var _TreeNodeComponent = require('./TreeNodeComponent');
+
+var _TreeNodeComponent2 = _interopRequireDefault(_TreeNodeComponent);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class TreeView extends _react.Component {
@@ -75,8 +83,8 @@ class TreeView extends _react.Component {
       return setData;
     };
 
-    this.createSourceTreeIndex = (getIndex, childName) => {
-      const updateData = this.state.itemData;
+    this.createSourceTreeIndex = (getIndex, childName, state) => {
+      const updateData = state.itemData;
       const getData = updateData.toJS();
       const treeSourceKey = getIndex.reduce((pre, cur) => {
         const resultData = (0, _lodash.get)(getData, pre.currentKey ? `${pre.currentKey}${childName}[${cur}].name` : '' + `[${cur}].name`, '');
@@ -102,7 +110,7 @@ class TreeView extends _react.Component {
       const setData = this.createNewData(data, getIndex, childName);
       const itemData = this.state.itemData;
 
-      const sourceTreeIndex = this.createSourceTreeIndex(getIndex, childName);
+      const sourceTreeIndex = this.createSourceTreeIndex(getIndex, childName, this.state);
 
       this.setState({
         activeName: setData.name
@@ -144,95 +152,95 @@ class TreeView extends _react.Component {
         'style',
         { jsx: true },
         `
-          .tree-view-component{
-            position: relative;
-            display: block;
-            clear:  both;
-          }
-          ul.tree-view-body{
-            display: block;
-            list-style: none;
-            padding: 0px;
-            margin: 0px;
-          }
-
-          span.tree-view-node{
-            position: relative;
-            list-style: none;
-            display: block;
-            padding-top: 10px;
-          }
-          ${treeStyle === '' ? `
-            span.tree-view-node:first-child:before{
-              content: '';
-              width: 1px;
-              height: 100%;
-              position: absolute;
-              left: -15px;
-              top: 0px;
-              background-color: #ddd;
-            }
-            span.tree-view-node:last-child:before{
-              content: '';
-              width: 1px;
-              height: 0%;
-              position: absolute;
-              left: -15px;
-              top: 0px;
-              background-color: #ddd;
-            }
-            span.tree-view-node span{
-              padding-top: 10px;
-              margin-left: 30px;
-              position: relative;
-              list-style: none;
-              display: block;
-            }
-          ` : treeStyle}
-          ${labelStyle === '' ? `
-            .tree-view-label{
-              cursor: pointer;
-              padding: 5px 15px;
-              display: inline-block;
-              position: relative;
-              background-color: #eee;
-            }
-            .tree-view-label:hover{
-              background: rgba(0,0,0,0.05);
-            }
-            .tree-view-label:before{
-              content: '';
-              width: 1px;
-              height: 82%;
-              position: absolute;
-              left: -15px;
-              top: -10px;
-              background-color: #ddd;
-            }
-
-            .tree-view-label:after{
-              content: '';
-              width: 15px;
-              height: 1px;
-              position: absolute;
-              left: -15px;
-              top: 50%;
-              background-color: #ddd;
-            }
-            .tree-view-label.active{
-              background-color: #ddd;
-              color: #333;
-            }
-            .tree-view-label.active:hover{
-              background: #eee;
-            }
-            ` : labelStyle}
-          `
+         .tree-view-component{
+           position: relative;
+           display: block;
+           clear:  both;
+         }
+         ul.tree-view-body{
+           display: block;
+           list-style: none;
+           padding: 0px;
+           margin: 0px;
+         }
+         
+         span.tree-view-node{
+           position: relative;
+           list-style: none;
+           display: block;
+           padding-top: 10px;
+         }
+         ${treeStyle === '' ? `
+           span.tree-view-node:first-child:before{
+             content: '';
+             width: 1px;
+             height: 100%;
+             position: absolute;
+             left: -15px;
+             top: 0px;
+             background-color: #ddd;
+           }
+           span.tree-view-node:last-child:before{
+             content: '';
+             width: 1px;
+             height: 0%;
+             position: absolute;
+             left: -15px;
+             top: 0px;
+             background-color: #ddd;
+           }
+           span.tree-view-node span{
+             padding-top: 10px;
+             margin-left: 30px;
+             position: relative;
+             list-style: none;
+             display: block;
+           }
+         ` : treeStyle}
+         ${labelStyle === '' ? `
+           .tree-view-label{
+             cursor: pointer;
+             padding: 5px 15px;
+             display: inline-block;
+             position: relative;
+             background-color: #eee;
+           }
+           .tree-view-label:hover{
+             background: rgba(0,0,0,0.05);
+           }
+           .tree-view-label:before{
+             content: '';
+             width: 1px;
+             height: 82%;
+             position: absolute;
+             left: -15px;
+             top: -10px;
+             background-color: #ddd;
+           }
+         
+           .tree-view-label:after{
+             content: '';
+             width: 15px;
+             height: 1px;
+             position: absolute;
+             left: -15px;
+             top: 50%;
+             background-color: #ddd;
+           }
+           .tree-view-label.active{
+             background-color: #ddd;
+             color: #333;
+           }
+           .tree-view-label.active:hover{
+             background: #eee;
+           }
+           ` : labelStyle}
+         `
       ),
       _react2.default.createElement(
         'ul',
         { className: 'tree-view-body' },
-        _react2.default.createElement(TreeNodeComponent, {
+        _react2.default.createElement(_TreeNodeComponent2.default, {
           data: itemData,
           childsIndex: childsIndex,
           getTreeIndex: getTreeIndex,
@@ -244,7 +252,6 @@ class TreeView extends _react.Component {
     );
   }
 }
-
 exports.default = TreeView;
 TreeView.propTypes = {
   labelStyle: _propTypes2.default.string,
@@ -264,128 +271,4 @@ TreeView.defaultProps = {
   activeName: null,
   childName: 'childs',
   labelName: 'name'
-};
-class TreeNodeComponent extends _react2.default.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.componentDidMount = () => {
-      let newState = this.state;
-      if (this.props.childsIndex !== []) newState.childsIndex.push(this.props.childsIndex);
-      this.setState(newState);
-    };
-
-    this.state = {
-      childsIndex: []
-    };
-  }
-
-  render() {
-    const getData = this.props.data;
-    const {
-      activeName,
-      childName,
-      labelName
-    } = this.props;
-    if (!getData) return null;
-    return getData.map((data, key) => {
-
-      return _react2.default.createElement(
-        'span',
-        { className: 'tree-view-node',
-          key: key
-        },
-        _react2.default.createElement(TreeNodeCondition, {
-          data: data,
-          childsIndex: this.state.childsIndex,
-          getTreeIndex: this.props.getTreeIndex,
-          keyNode: key,
-          activeName: activeName,
-          labelName: labelName
-        }),
-        data.get(`${childName}`) && _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(TreeNodeComponent, {
-            data: data.get(`${childName}`),
-            getTreeIndex: this.props.getTreeIndex,
-            childsIndex: this.state.childsIndex === [] ? [key] : [this.state.childsIndex, key],
-            activeName: activeName,
-            childName: childName,
-            labelName: labelName
-          })
-        )
-      );
-    });
-  }
-}
-
-TreeNodeComponent.propTypes = {
-  childsIndex: _propTypes2.default.array,
-  data: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array]),
-  getTreeIndex: _propTypes2.default.func,
-  activeName: _propTypes2.default.string,
-  childName: _propTypes2.default.string,
-  labelName: _propTypes2.default.string
-};
-class TreeNodeCondition extends _react2.default.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.componentDidUpdate = nextProps => {
-      const {
-        data,
-        labelName,
-        keyNode,
-        childsIndex
-      } = this.props;
-      if (this.state.checkUpdate === false) {
-        if ((0, _lodash.get)(nextProps, 'activeName', '') === data.get(`${labelName}`)) {
-          this.handleChangeUpdate(true);
-          this.props.getTreeIndex(childsIndex === [] ? [keyNode] : [childsIndex, keyNode]);
-        }
-      }
-    };
-
-    this.handleChangeUpdate = status => {
-      this.setState({
-        checkUpdate: status
-      });
-    };
-
-    this.state = {
-      checkUpdate: false
-    };
-  }
-
-  render() {
-
-    const {
-      activeName,
-      data,
-      labelName,
-      keyNode,
-      childsIndex
-    } = this.props;
-
-    return _react2.default.createElement(
-      'div',
-      { className: `tree-view-label ${activeName === data.get(`${labelName}`) && 'active'}`,
-        onClick: () => this.props.getTreeIndex(childsIndex === [] ? [keyNode] : [childsIndex, keyNode])
-      },
-      data.get(`${labelName}`)
-    );
-  }
-
-}
-TreeNodeCondition.propTypes = {
-  childsIndex: _propTypes2.default.array,
-  data: _propTypes2.default.object,
-  getTreeIndex: _propTypes2.default.func,
-  activeName: _propTypes2.default.string,
-  childName: _propTypes2.default.string,
-  labelName: _propTypes2.default.string,
-  keyNode: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
 };
