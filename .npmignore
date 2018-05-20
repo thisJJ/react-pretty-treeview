@@ -2,3 +2,5 @@ source
 stories
 .storybook
 readme-source
+.travis.yml
+.npmrc
