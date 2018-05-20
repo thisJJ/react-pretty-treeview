@@ -1,6 +1,6 @@
 # react-pretty-treeview
 
-![build](https://api.travis-ci.org/thisJJ/react-pretty-treeview.svg?branch=maste "Build")
+![build](https://api.travis-ci.org/thisJJ/react-pretty-treeview.svg?branch=master "Build")
 ![version](https://thisjj.github.io/badge/react-pretty-treeview-version.svg "Version")
 
 
