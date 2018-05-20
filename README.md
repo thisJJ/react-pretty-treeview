@@ -1,5 +1,4 @@
-# react-tree-view
-
+# react-pretty-treeview
 ![version](https://thisjj.github.io/badge/react-pretty-treeview-version.svg "Version")
 
 ![Preview](https://raw.githubusercontent.com/thisJJ/react-pretty-treeview/master/readme-source/preview.png "Preview")
