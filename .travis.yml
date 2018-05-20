@@ -1,5 +1,5 @@
 language: node_js
 deploy:
-  api_key:
+  api_key: $NPM_TOKEN
   email: thinnakrit.idesign@gmail.com
   provider: npm
