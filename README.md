@@ -4,6 +4,8 @@
 ![version](https://thisjj.github.io/badge/react-pretty-treeview-version.svg "Version")
 ![Download](https://img.shields.io/npm/dt/react-pretty-treeview.svg "Download")
 
+![GitHub package version](https://img.shields.io/github/package-json/v/thisjj/react-pretty-treeview.svg)
+
 ![Preview](https://raw.githubusercontent.com/thisJJ/react-pretty-treeview/master/readme-source/preview.png "Preview")
 
 
