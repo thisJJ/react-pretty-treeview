@@ -2,7 +2,7 @@
 
 ![build](https://api.travis-ci.org/thisJJ/react-pretty-treeview.svg?branch=master "Build")
 ![version](https://thisjj.github.io/badge/react-pretty-treeview-version.svg "Version")
-
+![Download](https://img.shields.io/npm/dt/react-pretty-treeview.svg "Download")
 
 ![Preview](https://raw.githubusercontent.com/thisJJ/react-pretty-treeview/master/readme-source/preview.png "Preview")
 
